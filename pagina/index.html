@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Brian</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Escribe algo...">
+            <button onclick="search()">Buscar</button>
+        </div>
+    </div>
+
+    <script>
+        function search() {
+            const searchQuery = document.getElementById('searchInput').value;
+            if (searchQuery.toLowerCase() === "youtube") {
+                window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
+            } else {
+                // Aquí puedes agregar código para realizar otras búsquedas o acciones según lo que el usuario escriba.
+                // En este ejemplo, simplemente realizará una búsqueda general.
+                const encodedQuery = encodeURIComponent(searchQuery);
+                const googleSearchUrl = `https://www.google.com/search?q=${encodedQuery}`;
+                window.location.href = googleSearchUrl;
+            }
+        }
+    </script>
+</body>
+</html>
