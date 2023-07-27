@@ -2,51 +2,10 @@
 <html>
 <head>
   <title>Brazo Robótico Controlado por Voz</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      text-align: center;
-      font-family: 'Lucida Console', sans-serif;
-    }
-
-    h1 {
-      margin-top: 40px;
-    }
-
-    button {
-      margin-top: 20px;
-    }
-
-    p {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-
-    #sound-levels {
-      width: 200px;
-      height: 30px;
-      background-color: #444;
-      position: relative;
-      margin: 20px auto;
-    }
-
-    #sound-level-bar {
-      height: 100%;
-      width: 0;
-      background-color: #f00;
-      transition: width 0.1s;
-    }
-  </style>
+ 
 </head>
 <body>
-  <h1>Control de Brazo Robótico por Voz</h1>
-  <button id="start-btn">Iniciar Reconocimiento de Voz</button>
-  <button id="stop-btn">Detener Reconocimiento de Voz</button>
-  <p>Proyecto de Brian Rodríguez, Kevin Rodríguez, Rafa y Antony</p>
-  <div id="sound-levels">
-    <div id="sound-level-bar"></div>
-  </div>
+    <div id="main"></div>
 
   <script>
     const apiKey = 'TU_CLAVE_DE_API'; // Reemplaza con tu clave de API de Google Cloud
@@ -114,8 +73,8 @@
     recognition.onresult = (event) => {
       const transcript = event.results[event.results.length - 1][0].transcript.trim();
       console.log('Comando detectado:', transcript);
-
-      interpretarComando(transcript); // Llamamos a la función para interpretar el comando
+        document.querySelector("#main").innerHTML += transcript + "\n"
+      
     };
 
     // Función para visualizar los niveles de sonido en tiempo real
