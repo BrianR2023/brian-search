@@ -15,38 +15,8 @@
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'es-ES'; // Puedes ajustar el idioma según tus necesidades
-    let recognitionStarted = false;
 
-    // Obtener los botones por su ID
-    const startButton = document.getElementById('start-btn');
-    const stopButton = document.getElementById('stop-btn');
-
-    startButton.addEventListener('click', () => {
-      // Solicitar permiso para acceder al micrófono solo si el reconocimiento no ha comenzado
-      if (!recognitionStarted) {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-          .then((stream) => {
-            // Visualizar los niveles de sonido en tiempo real
-            visualizeSoundLevels(stream);
-
-            recognition.start();
-            recognitionStarted = true;
-            console.log('Reconocimiento de voz iniciado.');
-          })
-          .catch((error) => {
-            console.error('Permiso denegado o error al acceder al micrófono:', error);
-          });
-      }
-    });
-
-    stopButton.addEventListener('click', () => {
-      // Detener el reconocimiento solo si se ha iniciado previamente
-      if (recognitionStarted) {
-        recognition.stop();
-        recognitionStarted = false;
-        console.log('Reconocimiento de voz detenido.');
-      }
-    });
+    recognition.start();
 
     // Función para interpretar los comandos de voz y controlar el brazo robótico
     function interpretarComando(comando) {
