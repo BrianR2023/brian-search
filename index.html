@@ -43,41 +43,11 @@
     recognition.onresult = (event) => {
       const transcript = event.results[event.results.length - 1][0].transcript.trim();
       console.log('Comando detectado:', transcript);
-        document.querySelector("#main").innerHTML += transcript + "\n"
+        document.querySelector("#main").innerHTML = document.querySelector("#main").innerHTML + transcript + "\n"
       
     };
 
-    // Función para visualizar los niveles de sonido en tiempo real
-    function visualizeSoundLevels(stream) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaStreamSource(stream);
-      source.connect(analyser);
-
-      analyser.fftSize = 256;
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      const soundLevelBar = document.getElementById('sound-level-bar');
-      const soundLevelsDiv = document.getElementById('sound-levels');
-      const soundLevelsWidth = soundLevelsDiv.offsetWidth;
-
-      function draw() {
-        analyser.getByteFrequencyData(dataArray);
-
-        let sum = 0;
-        dataArray.forEach(value => sum += value);
-        const average = sum / bufferLength;
-        const percentage = average / 256;
-
-        const barWidth = soundLevelsWidth * percentage;
-        soundLevelBar.style.width = `${barWidth}px`;
-
-        requestAnimationFrame(draw);
-      }
-
-      draw();
-    }
+      
 
   </script>
 </body>
