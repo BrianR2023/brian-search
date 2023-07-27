@@ -19,32 +19,12 @@
     recognition.start();
 
     // Función para interpretar los comandos de voz y controlar el brazo robótico
-    function interpretarComando(comando) {
-      // Convertir el comando a minúsculas para hacer coincidencias sin distinción de mayúsculas/minúsculas
-      const comandoMin = comando.toLowerCase();
-
-      if (comandoMin.includes('arriba')) {
-        console.log('Mover el brazo hacia arriba.');
-        // Aquí debes agregar la lógica para mover el brazo hacia arriba
-      } else if (comandoMin.includes('abajo')) {
-        console.log('Mover el brazo hacia abajo.');
-        // Aquí debes agregar la lógica para mover el brazo hacia abajo
-      } else if (comandoMin.includes('abrir')) {
-        console.log('Abrir el brazo.');
-        // Aquí debes agregar la lógica para abrir el brazo
-      } else if (comandoMin.includes('cerrar')) {
-        console.log('Cerrar el brazo.');
-        // Aquí debes agregar la lógica para cerrar el brazo
-      } else {
-        console.log('Comando no reconocido.');
-      }
-    }
+    
 
     recognition.onresult = (event) => {
-      const transcript = event.results[event.results.length - 1][0].transcript.trim();
-      console.log('Comando detectado:', transcript);
-        document.querySelector("#main").innerHTML = document.querySelector("#main").innerHTML + transcript + "\n"
-      
+      const transcript = event.results.at(-1)[0].transcript;
+      document.querySelector("#main").innerHTML = document.querySelector("#main").innerHTML + transcript + "\n"
+      alert()
     };
 
       
